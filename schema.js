@@ -1,7 +1,6 @@
 'use strict';
 
 var Schema = require('mongoose').Schema;
-
 var logSchema = new Schema({
   name: String,
   hostname: String,

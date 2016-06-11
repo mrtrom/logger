@@ -1,0 +1,20 @@
+{
+  "author": "Alexander Ochoa <ochoaseguralex@gmail.com>",
+  "name": "example",
+  "description": "Simple Hello World example",
+  "version": "0.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alltherooms/providers.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mrtrom/logger/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "app.js",
+  "dependencies": {
+   "logger": "git://github.com/mrtrom/logger"
+  }
+}

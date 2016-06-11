@@ -1,6 +1,6 @@
 'use strict';
 
-var Log = require('./log.model');
+var Log = require('./schema');
 var CONF = require('config');
 var http = require('http');
 var bunyan = require('bunyan');
@@ -15,9 +15,8 @@ function LoggerStream (options) {
   Writable.call(this, options);
 }
 
-LoggerStream.prototype._write = function (chunk, encoding, callback) {
-  var req;
-  var log = chunk;
+LoggerStream.prototype._write = function (log, encoding, callback) {
+  log = log.toString('utf-8');
 
   //Write to process.stdout
   process.stdout.write(log);
@@ -25,11 +24,9 @@ LoggerStream.prototype._write = function (chunk, encoding, callback) {
   //Save in mongo Log model
   if (typeof log == 'string') log = JSON.parse(log);  
   Log.create(log, function (error, _log) {
-    if (error) self.alert({message: error.message, log: log});
-    self.alertLog(_log);
+    process.stderr.write(error);
   });
 
-  req.end(chunk);
   callback();
 };
 
